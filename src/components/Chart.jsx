@@ -6,30 +6,12 @@ import {
   CartesianGrid,
   XAxis,
   YAxis,
-  Tooltip,
-  Legend
+  Tooltip
 } from "recharts";
 
 const Chart = ({ sparklineData }) => {
+
   
-  handleMouseEnter = (o) => {
-    const { dataKey } = o;
-    const { opacity } = this.state;
-
-    this.setState({
-      opacity: { ...opacity, [dataKey]: 0.5 },
-    });
-  };
-
-  handleMouseLeave = (o) => {
-    const { dataKey } = o;
-    const { opacity } = this.state;
-
-    this.setState({
-      opacity: { ...opacity, [dataKey]: 1 },
-    });
-  };
-
   const formattedData = sparklineData
     .map((price, idx) => {
       if (idx % 6 === 0) {
@@ -48,7 +30,7 @@ const Chart = ({ sparklineData }) => {
 
   return (
     <LineChart width={1100} height={300} data={formattedData}>
-      <Line type="monotone" dataKey="value" stroke="#8884d8" />
+      <Line className='line' type="monotone" dataKey="value" stroke="#8884d8" />
       <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
       <XAxis dataKey="date" interval={3} />
       <YAxis />
